@@ -1,0 +1,5 @@
+db.sqlite3
+mysite/__pycache__/*
+polls/__pycach__/*
+polls/migrations/*
+secret.txt
