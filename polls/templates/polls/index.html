@@ -1,11 +1,11 @@
 {% extends 'polls/base.html' %}
 {% block content %}
   {% if latest_question_list %}
-      <ul>
+    <ul>
       {% for question in latest_question_list %}
-         <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
       {% endfor %}
-      </ul>    
+    </ul>    
   {% else %}
       <p>No polls are available.</p>
   {% endif %}

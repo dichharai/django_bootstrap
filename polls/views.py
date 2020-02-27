@@ -9,13 +9,20 @@ from .models import Question, Choice
 
 def home(request):
     return render(request, 'home.html', {})
+'''
+def index(request):
+    qs = Question.objects.filter(pub_date__lte=timezone.now())
+    context = {
+        'latest_question_list': qs
+    }
+    return render(request, 'polls/index.html', context)
+'''
 
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
     context_object_name = 'latest_question_list'
 
     def get_queryset(self):
-
         """
         Return the last five published questions.
         """
@@ -29,12 +36,16 @@ class IndexView(generic.ListView):
         """
             Return the last five published question (not including those set to be published in the future) with choices.
         """
+
         q_c = []
         qs = Question.objects.filter(pub_date__lte=timezone.now()).order_by('-pub_date')
         for q in qs:
             if q.choice_set.count() > 0:
                 q_c.append(q)
         return q_c
+
+
+
 
 class DetailView(generic.DetailView):
     model = Question
